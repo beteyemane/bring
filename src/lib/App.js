@@ -65,7 +65,6 @@ class App extends Component {
     return (
       <div className="App">
         <h1>bring.</h1>
-        {this.state.likes.map(like => <div key={like.id}> <h1>{like.title}</h1></div>)}
         <div className="button-container">
           <button onClick={(e) => this.toggleSold()} className="items">{this.state.buttonName}</button>
         </div>
