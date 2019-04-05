@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from '../lib/App';
+import { configure, mount } from 'enzyme';
+import { expect } from 'chai';
 
-it('renders without crashing', () => {
+let wrapper
+
+it('should render successfully', () => {
   const div = document.createElement('div');
   ReactDOM.render(<App />, div);
   ReactDOM.unmountComponentAtNode(div);
+
 });
