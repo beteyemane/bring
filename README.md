@@ -8,6 +8,9 @@
 * React
 * Axios
 
+## Timeframe
+
+Approx 2 hours 
 
 ## Code Installation
 
