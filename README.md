@@ -10,7 +10,7 @@
 
 ## Timeframe
 
-Approx 2 hours 
+Approx 3 hours 
 
 ## Code Installation
 
