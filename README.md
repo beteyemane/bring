@@ -34,3 +34,4 @@ The first step was to request the data from the API endpoint given, which was do
   this.setState({notSold: notSoldProducts})
 }
 ```
+My next step was to add a 'like' button. For now, on click, the button toggles the background colour. If I had more time, I would continue to work on the functionality so the item that has been liked is added to state, where I would then be able to reference the data, for eg. display a list of the names of products that the user has liked or the total number of likes of the item.
