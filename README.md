@@ -1,16 +1,16 @@
-# Project : Front End using React
+# Project : Front End using React.js
 
 ## Technologies used
 
 * HTML5
 * CSS
 * JavaScript (ES6)
-* React
+* React.js
 * Axios
 
 ## Timeframe
 
-Approx 3 hours 
+Approx 4.5 hours
 
 ## Code Installation
 
@@ -23,11 +23,14 @@ Approx 3 hours
 
 ![Screenshot 2019-04-05 at 09 06 18](https://user-images.githubusercontent.com/44004811/55613481-b248ef00-5782-11e9-9740-99090ca7e8b8.png)
 
+An application where users can view products and be able to like items as well as having the option to refine products on whether they've been sold or not.
+
 ## Process
 
-The first step was to request the data from the API endpoint given, which was done using Axios. I then mapped over the data to display the list of products. After the basic webpage was completed and some styling was added, I began to implement the Hide/Show sold items feature which was created using two functions. The 'notSold' function retrieves data where the 'sold' field value is 'false'. This then pushes it into and empty array and adds the items to the 'notSold' state. Once clicked on the Hide/Show button, a 'toggleSold' function is fired which toggles the displayed items between the complete product list and the products that have not been sold.
+Using Axios, I requested the data from the API endpoint given and mapped over the data to display the list of products. After the basic webpage was completed and some styling was added, I began to implement a hide/show feature which allows the user to hide the sold items from the product list and this was executed using two functions. The 'notSold' function retrieves data where the 'sold' field value is 'false'. This then pushes the products that have not been sold into and empty array and adds the items to the 'notSold' state. Once clicked on the Hide/Show button, a 'toggleSold' function is fired which toggles the displayed items between the complete product list and the products that have not been sold.
 
-```notSold() {
+```
+notSold() {
   let notSoldProducts = []
   this.state.products.forEach(product => {
       if(product.sold === false) {
@@ -37,4 +40,22 @@ The first step was to request the data from the API endpoint given, which was do
   this.setState({notSold: notSoldProducts})
 }
 ```
-My next step was to add a 'like' button. For now, on click, the button toggles the background colour. If I had more time, I would continue to work on the functionality so the item that has been liked is added to state, where I would then be able to reference the data, for eg. display a list of the names of products that the user has liked or the total number of likes of the item.
+I then worked on the like feature. This was achieved by firstly checking if the like button contains a class of 'background_color: red' hence, has been clicked on before. If so, the title of the product is pushed into an array. In order to 'unlike', the product title is removed using 'slice' on click. This finds the index position of "the product title" which then removes one element from that position.
+
+```
+handleChange(e, productItem){
+  const button = e.target
+  if(!button.classList.contains('background_color')){
+    button.classList.add('background_color')
+    likesArr.push(productItem)
+    this.setState({likes: likesArr})
+  } else {
+    button.classList.remove('background_color')
+    likesArr.splice( likesArr.indexOf(productItem), 1 )
+    this.setState({likes: likesArr})
+  }
+}
+```
+The users can view the items liked by clicking on the 'Liked Items' button. The application was also made mobile responsive using media query.
+
+If I had more time I would refactor my code to ensure maximum readability was attained. I'd also would like to expand on testing.

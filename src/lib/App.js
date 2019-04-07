@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import ProductCard from './ProductCard.js'
 
-let likes = []
+let likesArr = []
 
 class App extends Component {
   constructor(props) {
@@ -13,11 +13,12 @@ class App extends Component {
       notSold: [],
       toggle: false,
       buttonName: 'Hide Sold Items',
-      liked: false,
-      likes: []
+      likes: [],
+      likesHidden: false
     }
     this.notSold.bind = this.notSold.bind(this)
     this.toggleSold.bind = this.toggleSold.bind(this)
+    this.toggleLikes.bind = this.toggleLikes.bind(this)
     this.handleChange.bind = this.handleChange.bind(this)
   }
 
@@ -32,12 +33,11 @@ class App extends Component {
   }
 
   toggleSold(){
-    if(this.state.toggle === false) {
+    if(this.state.toggle) {
+      this.setState({ buttonName: 'Hide Sold Items' })
+    } else {
       this.notSold()
       this.setState({ buttonName: 'Show All Items' })
-    } else {
-      this.setState({ notSold: []})
-      this.setState({ buttonName: 'Hide Sold Items' })
     }
     this.setState({ toggle: !this.state.toggle })
   }
@@ -49,42 +49,58 @@ class App extends Component {
     })
   }
 
-  handleChange(e, product){
-    this.setState({ likes: product })
-    console.log(this.state.likes)
+  handleChange(e, productItem){
     const button = e.target
     if(!button.classList.contains('background_color')){
       button.classList.add('background_color')
-      likes.push(product)
+      likesArr.push(productItem)
+      this.setState({likes: likesArr})
     } else {
       button.classList.remove('background_color')
+      likesArr.splice( likesArr.indexOf(productItem), 1 )
+      this.setState({likes: likesArr})
     }
   }
 
+  toggleLikes() {
+    this.setState({likesHidden: !this.state.likesHidden})
+  }
+
   render() {
+    const { likesHidden } = this.state;
     return (
       <div className="App">
         <h1>bring.</h1>
         <div className="button-container">
           <button onClick={(e) => this.toggleSold()} className="items">{this.state.buttonName}</button>
+          <button onClick={() => this.setState({ likesHidden: !likesHidden })}> LIKED ITEMS: {this.state.likes.length} </button>
         </div>
+
+        { likesHidden ? <div className="liked-items-container">
+        {this.state.likes.map((like, index) => <div key={index}>{like}</div>)}
+        </div> : null}
+
         {!this.state.toggle ?
         <div className="products">
           {this.state.products.map(product => <div className="product-items" key={product.id}>
             <ProductCard {...product}
             />
-            <button onClick={(e) => this.handleChange(e, product)}>👍</button>
+            <button classlist="like-button" onClick={(e) => this.handleChange(e, product.title)}>
+               ❤
+            </button>
             </div>)}
         </div>
       :
-      <div className="products">
-        {this.state.notSold.map(product => <div className="product-items" key={product.id}>
-          <ProductCard {...product}
-          />
-          <button onClick={(e) => this.handleChange(e, product)}>👍</button>
+        <div className="products">
+          {this.state.notSold.map(product => <div className="product-items" key={product.id}>
+            <ProductCard {...product}
+            />
+            <button classlist="like-button" onClick={(e) => this.handleChange(e, product.title)}>
+               ❤
+            </button>
           </div>)}
-      </div>
-    }
+        </div>
+      }
       </div>
     );
   }

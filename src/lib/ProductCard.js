@@ -8,14 +8,12 @@ const ProductCard = ({sold, title, img, brand, size, price, handleChange, text})
         <div style={{display: sold === true ? 'none' : 'block' }} className="content-overlay"></div>
         <img src={img} alt={title} />
         <div style={{display: sold === true ? 'block' : 'none' }} className="text-overlay">SOLD</div>
-        <div style={{display: sold === true ? 'none' : 'block' }} className="content-details fadeIn-bottom">
+        </div>
         <h3>{title}</h3>
         <p>{brand}</p>
         <p>{size}</p>
         <p>£{price}</p>
-        </div>
       </div>
-    </div>
   )
 }
 export default ProductCard

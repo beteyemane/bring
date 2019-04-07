@@ -17,25 +17,32 @@ body {
   font-family: 'Righteous', cursive;
 }
 
-.App .items {
+.button-container button {
   width: 150px;
   margin-bottom: 20px;
 }
 
-button {
+button #like-button {
   width: 50px;
   margin-top: 5px;
+  align-self: flex-end;
 }
 
 button:hover {
   cursor: pointer;
 }
 
-.button-container {
-  justify-content: flex-start;
+.button-container, .liked-items-container {
+  justify-content: space-between;
   display: flex;
   max-width: 860px;
   margin: 0 auto;
+}
+
+.liked-items-container {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
 }
 
 .App .items:hover {
@@ -43,6 +50,7 @@ button:hover {
   color: white;
   background-color: black;
 }
+
 /* ==============products=========== */
 .products {
   margin: 0 auto;
@@ -84,47 +92,8 @@ button:hover {
   cursor: pointer;
 }
 
-.content .content-overlay {
-  background: rgba(0,0,0,0.9);
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  opacity: 0;
-  -webkit-transition: all 0.4s ease-in-out 0s;
-  -moz-transition: all 0.4s ease-in-out 0s;
-  transition: all 0.4s ease-in-out 0s;
-}
-
 .content:hover .content-overlay{
-  opacity: 1;
-}
-
-.content-details {
-  position: absolute;
-  text-align: center;
-  padding-left: 1em;
-  padding-right: 1em;
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  opacity: 0;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  -webkit-transition: all 0.3s ease-in-out 0s;
-  -moz-transition: all 0.3s ease-in-out 0s;
-  transition: all 0.3s ease-in-out 0s;
-}
-
-.content:hover .content-details{
-  top: 50%;
-  left: 50%;
-  opacity: 1;
-  color: white;
+  opacity: 0.5;
 }
 
 .text-overlay {
@@ -139,4 +108,13 @@ button:hover {
   border-radius: 5px;
   color: white;
   content: 'SOLD'
+}
+
+/*==========media query==========*/
+
+@media only screen and (max-width: 900px) {
+  .products {
+    justify-content: center;
+    display: flex;
+  }
 }
