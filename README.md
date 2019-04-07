@@ -21,7 +21,7 @@ Approx 4.5 hours
 
 ## Application: bring.
 
-![Screenshot 2019-04-05 at 09 06 18](https://user-images.githubusercontent.com/44004811/55613481-b248ef00-5782-11e9-9740-99090ca7e8b8.png)
+![Screenshot 2019-04-07 at 00 41 35](https://user-images.githubusercontent.com/44004811/55682856-cf232500-5930-11e9-9c8b-13c6e191a28e.png)
 
 An application where users can view products and be able to like items as well as having the option to refine products on whether they've been sold or not.
 
